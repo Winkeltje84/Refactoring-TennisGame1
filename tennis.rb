@@ -20,16 +20,16 @@ class TennisGame1
     @result = ""
     #tempScore=0
     if (@p1points == @p2points)
-      points_draw
+      draw
     elsif (@p1points>=4 or @p2points>=4)
-      points_four_or_more
+      four_points_or_more
     else
-      points_3_or_less_and_no_draw
+      three_points_or_less
     end
     @result
   end
 
-  def points_draw
+  def draw
       @result = {
           0 => "Love-All", # =>  0 : 0
           1 => "Fifteen-All", # => 1 : 1
@@ -37,7 +37,7 @@ class TennisGame1
       }.fetch(@p1points, "Deuce") # => deuce is 3 : 3
   end
 
-  def points_four_or_more
+  def four_points_or_more
     minusResult = @p1points-@p2points
     if (minusResult == 1 or minusResult == -1)
       advantage(minusResult)
@@ -47,7 +47,7 @@ class TennisGame1
 
   end
 
-  def points_3_or_less_and_no_draw
+  def three_points_or_less
     (1..2).each do |i|
       if (i==1)
         tempScore = @p1points
