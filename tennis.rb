@@ -11,8 +11,7 @@ class TennisGame1
   def won_point(playerName)
     if playerName == @player1Name
       @p1points += 1
-    else
-      @p2points += 1
+    else @p2points += 1
     end
   end
 
@@ -23,8 +22,7 @@ class TennisGame1
       draw
     elsif (@p1points>=4 or @p2points>=4)
       four_points_or_more
-    else
-      three_points_or_less
+    else three_points_or_less
     end
     @result
   end
@@ -40,48 +38,34 @@ class TennisGame1
   def four_points_or_more
     minusResult = @p1points-@p2points
     if (minusResult == 1 or minusResult == -1)
-      advantage(minusResult)
-    else
-      winner(minusResult)
+       advantage(minusResult)
+    else winner(minusResult)
     end
 
   end
 
   def three_points_or_less
-    (1..2).each do |i|
-      if (i==1)
-        tempScore = @p1points
-      else
-        @result+="-"
-        tempScore = @p2points
-      end
-      show_result(tempScore)
-    end
+    score_names = {
+        0 => "Love",
+        1 => "Fifteen",
+        2 => "Thirty",
+        3 => "Forty",
+    }
+    @result = "#{score_names[@p1points]}" + "-" + "#{score_names[@p2points]}"
   end
 
   def advantage(minusResult)
     if (minusResult==1)
       @result ="Advantage " + @player1Name
-    else
-      @result ="Advantage " + @player2Name
+    else @result ="Advantage " + @player2Name
     end
   end
 
   def winner(minusResult)
     if (minusResult>=2)
       @result = "Win for " + @player1Name
-    else
-      @result ="Win for " + @player2Name
+    else @result ="Win for " + @player2Name
     end
-  end
-
-  def show_result(tempScore)
-    @result += {
-        0 => "Love",
-        1 => "Fifteen",
-        2 => "Thirty",
-        3 => "Forty",
-    }[tempScore]
   end
 end
 
