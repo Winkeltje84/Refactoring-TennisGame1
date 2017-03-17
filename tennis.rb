@@ -31,10 +31,10 @@ class TennisGame1
 
   def draw
       @result = {
-          0 => "Love-All", # =>  0 : 0
-          1 => "Fifteen-All", # => 1 : 1
-          2 => "Thirty-All", # => 2 : 2
-      }.fetch(@p1points, "Deuce") # => deuce is 3 : 3
+          0 => "Love-All",
+          1 => "Fifteen-All",
+          2 => "Thirty-All",
+      }.fetch(@p1points, "Deuce")
   end
 
   def four_points_or_more
@@ -60,17 +60,17 @@ class TennisGame1
   end
 
   def advantage(minusResult)
-    if (minusResult==1) # => 4 : 3 of... 5 : 4 etc...
+    if (minusResult==1)
       @result ="Advantage " + @player1Name
-    else # => 3 : 4 of... 4 : 5 etc...
+    else
       @result ="Advantage " + @player2Name
     end
   end
 
   def winner(minusResult)
-    if (minusResult>=2) # => 4 : 2
+    if (minusResult>=2)
       @result = "Win for " + @player1Name
-    else  # => 2 : 4
+    else
       @result ="Win for " + @player2Name
     end
   end
