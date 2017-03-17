@@ -18,13 +18,13 @@ class TennisGame1
 
   def score
     @result = ""
-    tempScore=0
+    #tempScore=0
     if (@p1points == @p2points)
       points_draw
     elsif (@p1points>=4 or @p2points>=4)
       points_four_or_more
     else
-      points_3_or_less_no_draw
+      points_3_or_less_and_no_draw
     end
     @result
   end
@@ -47,20 +47,15 @@ class TennisGame1
 
   end
 
-  def points_3_or_less_no_draw
-    (1...3).each do |i|
+  def points_3_or_less_and_no_draw
+    (1..2).each do |i|
       if (i==1)
         tempScore = @p1points
       else
         @result+="-"
         tempScore = @p2points
       end
-      @result += {
-          0 => "Love",
-          1 => "Fifteen",
-          2 => "Thirty",
-          3 => "Forty",
-      }[tempScore]
+      show_result(tempScore)
     end
   end
 
@@ -78,6 +73,15 @@ class TennisGame1
     else  # => 2 : 4
       @result ="Win for " + @player2Name
     end
+  end
+
+  def show_result(tempScore)
+    @result += {
+        0 => "Love",
+        1 => "Fifteen",
+        2 => "Thirty",
+        3 => "Forty",
+    }[tempScore]
   end
 end
 
